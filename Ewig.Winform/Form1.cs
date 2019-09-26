@@ -20,8 +20,7 @@ namespace Ewig.Winform
 
         private void btnCount_Click(object sender, EventArgs e)
         {
-            AlbumData albumData = new AlbumData();
-            int count = albumData.GetCount();
+            int count = DataRepository.Album.GetCount();
 
             txtCount.Text = count.ToString();
         }

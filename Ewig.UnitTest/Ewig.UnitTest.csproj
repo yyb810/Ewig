@@ -56,6 +56,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ewig.Data\Ewig.Data.csproj">
+      <Project>{AB467E8C-44F6-4E82-A65B-671C9C877832}</Project>
+      <Name>Ewig.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ewig\Ewig.csproj">
       <Project>{0d9326ee-3615-4e09-b890-169cdc6b3daa}</Project>
       <Name>Ewig</Name>

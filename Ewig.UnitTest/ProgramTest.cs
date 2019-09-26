@@ -1,5 +1,4 @@
-﻿using Ewig;
-// TDD (Test-Driven-Development)
+﻿// TDD (Test-Driven-Development)
 // Attribute
 // Reflection
 
@@ -7,6 +6,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using Ewig.Data;
 
 namespace Ewig.UnitTest
 {
@@ -16,7 +16,7 @@ namespace Ewig.UnitTest
         [TestMethod]
         public void Album_GetCountTest()
         {
-            int count = Program.Album_GetCount();
+            int count = DataRepository.Album.GetCount();
             
             Assert.AreEqual(347, count);
         }
@@ -24,7 +24,7 @@ namespace Ewig.UnitTest
         [TestMethod()]
         public void Album_GetByPKTest()
         {
-            Album album = Program.Album_GetByPK(1);
+            Album album = DataRepository.Album.GetByPK(1);
             
             Assert.AreEqual("For Those About To Rock We Salute You", album.Title);
             Assert.AreEqual(1, album.ArtistId);
@@ -33,7 +33,7 @@ namespace Ewig.UnitTest
         [TestMethod()]
         public void Album_GetAllPKTest()
         {
-            List<Album> albums = Program.Album_GetAll();
+            List<Album> albums = DataRepository.Album.GetAll();
 
             Assert.AreEqual(347, albums.Count);
             
@@ -44,15 +44,15 @@ namespace Ewig.UnitTest
         [TestMethod()]
         public void Album_InsertTest()
         {
-            int oldCount = Program.Album_GetCount();
+            int oldCount = DataRepository.Album.GetCount();
 
             Album album = new Album();
             album.Title = DateTime.Now.ToString();
             album.ArtistId = 1;
 
-            Program.Album_Insert(album);
+            DataRepository.Album.Insert(album);
 
-            int newCount = Program.Album_GetCount();
+            int newCount = DataRepository.Album.GetCount();
 
             Assert.AreEqual(oldCount + 1, newCount);
         }
@@ -62,12 +62,12 @@ namespace Ewig.UnitTest
         {
             string now = DateTime.Now.ToString();
 
-            Album album = Program.Album_GetByPK(2);
+            Album album = DataRepository.Album.GetByPK(2);
 
             album.Title = now;
-            Program.Album_Update(album);
+            DataRepository.Album.Update(album);
 
-            album = Program.Album_GetByPK(2);
+            album = DataRepository.Album.GetByPK(2);
 
             Assert.AreEqual(now, album.Title);
         }
@@ -75,12 +75,12 @@ namespace Ewig.UnitTest
         [TestMethod()]
         public void Album_DeleteTest()
         {
-            int lastAlbumId = Program.Album_GetLastAlbumId();
-            Album album = Program.Album_GetByPK(lastAlbumId);
+            int lastAlbumId = DataRepository.Album.GetLastAlbumId();
+            Album album = DataRepository.Album.GetByPK(lastAlbumId);
 
-            Program.Album_Delete(album);
+            DataRepository.Album.Delete(album);
 
-            album = Program.Album_GetByPK(lastAlbumId);
+            album = DataRepository.Album.GetByPK(lastAlbumId);
 
             Assert.IsNull(album);
         }
@@ -88,14 +88,14 @@ namespace Ewig.UnitTest
         [TestMethod()]
         public void Album_GetLastTest()
         {
-            int oldMaxAlbumId = Program.Album_GetLastAlbumId();
+            int oldMaxAlbumId = DataRepository.Album.GetLastAlbumId();
 
             Album album = new Album();
             album.Title = DateTime.Now.ToString();
             album.ArtistId = 1;
-            Program.Album_Insert(album);
+            DataRepository.Album.Insert(album);
 
-            int newMaxAlbumId = Program.Album_GetLastAlbumId();
+            int newMaxAlbumId = DataRepository.Album.GetLastAlbumId();
 
             Assert.AreEqual(oldMaxAlbumId + 1, newMaxAlbumId);
         }
