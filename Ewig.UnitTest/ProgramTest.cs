@@ -14,22 +14,6 @@ namespace Ewig.UnitTest
     public class ProgramTest
     {
         [TestMethod]
-        public void 양수와_양수를_더하면_합계를_반환하여야_함()
-        {
-            int sum = Program.Add(1, 2);
-
-            Assert.AreEqual(3, sum);
-        }
-
-        [TestMethod]
-        public void 음수와_음수를_더하면_합계를_반환하여야_함()
-        {
-            int sum = Program.Add(-1, -2);
-
-            Assert.AreEqual(-3, sum);
-        }
-
-        [TestMethod]
         public void Album_GetCountTest()
         {
             int count = Program.Album_GetCount();
@@ -71,6 +55,49 @@ namespace Ewig.UnitTest
             int newCount = Program.Album_GetCount();
 
             Assert.AreEqual(oldCount + 1, newCount);
+        }
+
+        [TestMethod()]
+        public void Album_UpdateTest()
+        {
+            string now = DateTime.Now.ToString();
+
+            Album album = Program.Album_GetByPK(2);
+
+            album.Title = now;
+            Program.Album_Update(album);
+
+            album = Program.Album_GetByPK(2);
+
+            Assert.AreEqual(now, album.Title);
+        }
+
+        [TestMethod()]
+        public void Album_DeleteTest()
+        {
+            int lastAlbumId = Program.Album_GetLastAlbumId();
+            Album album = Program.Album_GetByPK(lastAlbumId);
+
+            Program.Album_Delete(album);
+
+            album = Program.Album_GetByPK(lastAlbumId);
+
+            Assert.IsNull(album);
+        }
+
+        [TestMethod()]
+        public void Album_GetLastTest()
+        {
+            int oldMaxAlbumId = Program.Album_GetLastAlbumId();
+
+            Album album = new Album();
+            album.Title = DateTime.Now.ToString();
+            album.ArtistId = 1;
+            Program.Album_Insert(album);
+
+            int newMaxAlbumId = Program.Album_GetLastAlbumId();
+
+            Assert.AreEqual(oldMaxAlbumId + 1, newMaxAlbumId);
         }
     }
 }

@@ -85,6 +85,71 @@ namespace Ewig
             return albums;
         }
 
+        public static void Album_Delete(Album album)
+        {
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = "Data Source=175.193.171.89;Initial Catalog=Chinook;User ID=sa;Password=3512";
+
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+            command.CommandText = "delete Album where AlbumId = @AlbumId";
+
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@AlbumId";
+            parameter.Value = album.AlbumId;
+            command.Parameters.Add(parameter);
+
+            connection.Open();
+
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+        public static int Album_GetLastAlbumId()
+        {
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = "Data Source=175.193.171.89;Initial Catalog=Chinook;User ID=sa;Password=3512";
+
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+            command.CommandText = "select top 1 AlbumId from Album order by AlbumId desc";
+
+            connection.Open();
+
+            int count = (int)command.ExecuteScalar();
+
+            connection.Close();
+
+            return count;
+        }
+
+        public static void Album_Insert(Album album)
+        {
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = "Data Source=175.193.171.89;Initial Catalog=Chinook;User ID=sa;Password=3512";
+
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+            command.CommandText = "insert into Album values(@Title, @ArtistId)";
+
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@Title";
+            parameter.Value = album.Title;
+            command.Parameters.Add(parameter);
+
+            parameter = new SqlParameter();
+            parameter.ParameterName = "@ArtistId";
+            parameter.Value = album.ArtistId;
+            command.Parameters.Add(parameter);
+
+            connection.Open();
+
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
         public static Album Album_GetByPK(int albumId)
         {
             SqlConnection connection = new SqlConnection();
@@ -120,9 +185,35 @@ namespace Ewig
             return album;
         }
 
-        public static int Add(int v1, int v2)
+        public static void Album_Update(Album album)
         {
-            return v1 + v2;
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = "Data Source=175.193.171.89;Initial Catalog=Chinook;User ID=sa;Password=3512";
+
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+            command.CommandText = "update Album set Title = @Title,  ArtistId = @ArtistId where AlbumId = @AlbumId";
+
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@AlbumId";
+            parameter.Value = album.AlbumId;
+            command.Parameters.Add(parameter);
+
+            parameter = new SqlParameter();
+            parameter.ParameterName = "@Title";
+            parameter.Value = album.Title;
+            command.Parameters.Add(parameter);
+
+            parameter = new SqlParameter();
+            parameter.ParameterName = "@ArtistId";
+            parameter.Value = album.ArtistId;
+            command.Parameters.Add(parameter);
+
+            connection.Open();
+
+            command.ExecuteNonQuery();
+
+            connection.Close();
         }
     }
 }
