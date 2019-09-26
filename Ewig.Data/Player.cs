@@ -12,18 +12,18 @@ namespace Ewig.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class MediaType
+    public partial class Player
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MediaType()
+        public Player()
         {
-            this.Tracks = new HashSet<Track>();
+            this.Votes = new HashSet<Vote>();
         }
     
-        public int MediaTypeId { get; set; }
+        public int PlayerId { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Track> Tracks { get; set; }
+        public virtual ICollection<Vote> Votes { get; set; }
     }
 }

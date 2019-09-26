@@ -5,18 +5,19 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AB467E8C-44F6-4E82-A65B-671C9C877832}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ewig.Data</RootNamespace>
-    <AssemblyName>Ewig.Data</AssemblyName>
+    <ProjectGuid>{60D7D1E5-120C-4ADD-96D2-563940BD93CB}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Ewig.Admin</RootNamespace>
+    <AssemblyName>Ewig.Admin</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -26,6 +27,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,8 +45,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,68 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataRepository.cs" />
-    <Compile Include="Data\EntityData.cs" />
-    <Compile Include="Data\PlayerData.cs" />
-    <Compile Include="Data\RestaurantData.cs" />
-    <Compile Include="Data\SupperData.cs" />
-    <Compile Include="Data\VoteData.cs" />
-    <Compile Include="Entities\Album.cs" />
-    <Compile Include="Entities\Vote.cs" />
-    <Compile Include="Ewig.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Ewig.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Ewig.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Ewig.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Ewig.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Ewig.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Player.cs">
-      <DependentUpon>Ewig.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Restaurant.cs">
-      <DependentUpon>Ewig.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Supper.cs">
-      <DependentUpon>Ewig.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Vote.cs">
-      <DependentUpon>Ewig.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
-    <EntityDeploy Include="Ewig.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Ewig.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Ewig.edmx.diagram">
-      <DependentUpon>Ewig.edmx</DependentUpon>
-    </None>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Ewig.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Ewig.edmx</DependentUpon>
-      <LastGenOutput>Ewig.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Ewig.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Ewig.edmx</DependentUpon>
-      <LastGenOutput>Ewig.cs</LastGenOutput>
-    </Content>
+    <ProjectReference Include="..\Ewig.Data\Ewig.Data.csproj">
+      <Project>{AB467E8C-44F6-4E82-A65B-671C9C877832}</Project>
+      <Name>Ewig.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

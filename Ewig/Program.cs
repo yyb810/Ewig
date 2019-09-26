@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Ewig
@@ -12,24 +13,53 @@ namespace Ewig
     {
         static void Main(string[] args)
         {
-            List<Album> albums = DataRepository.Album.GetAll();
+            SelectRestaurant();
+            
+            while (true)
+            {
+                if (DataRepository.Supper.HasDone(DateTime.Today))
+                    break;
 
-            Album album = DataRepository.Album.GetByPK(4);
+                Thread.Sleep(1000);
+                Console.Write(".");
+            }
 
-            album.Title = DateTime.Now.ToString();
-            DataRepository.Album.Update(album);
+            ShowVotes();
 
-            int count = DataRepository.Album.GetCount();
+            ShowWinner();
+        }
 
-            Album newAlbum = new Album();
-            newAlbum.Title = DateTime.Now.ToString();
-            DataRepository.Album.Insert(newAlbum);
+        private static void ShowWinner()
+        {
+            var supper = DataRepository.Supper.GetByPK(DateTime.Today);
+            var restaurant = DataRepository.Restaurant.GetByPK(supper.RestaurantId.Value);
 
-            count = DataRepository.Album.GetCount();
+            Console.WriteLine($"The winner is {restaurant.Name}");
+        }
 
-            DataRepository.Album.Delete(newAlbum);
+        private static void ShowVotes()
+        {
+            var votes = DataRepository.Vote.GetByDate(DateTime.Today);
 
-            count = DataRepository.Album.GetCount();
+            int index = 1;
+            foreach (var vote in votes)
+            {
+                Console.WriteLine($"[{index++}] {vote.RestaurantName}");
+            }
+        }
+
+        private static void SelectRestaurant()
+        {
+            Console.WriteLine("선택하세요");        
+            var list = DataRepository.Restaurant.GetAll();
+            int index = 1;
+            foreach (var item in list)
+                Console.WriteLine($"[{index++}] {item.Name}");
+
+            int selection = int.Parse(Console.ReadLine());
+            var restaurant = list[selection - 1];
+
+            DataRepository.Vote.Vote()
         }
     }
 }
