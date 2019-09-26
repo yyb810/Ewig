@@ -11,7 +11,7 @@ using Ewig.Data;
 namespace Ewig.UnitTest
 {
     [TestClass]
-    public class ProgramTest
+    public class AlbumDataTest
     {
         [TestMethod]
         public void Album_GetCountTest()

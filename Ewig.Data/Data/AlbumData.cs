@@ -14,15 +14,6 @@ namespace Ewig.Data
         {
         }
 
-        private SqlConnection CreateConnection()
-        {
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = "Data Source=175.193.171.89;Initial Catalog=Chinook;User ID=sa;Password=3512";
-            connection.Open();
-
-            return connection;
-        }
-
         public int GetCount()
         {
             using (ChinookEntities context = new ChinookEntities())
