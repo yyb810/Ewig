@@ -36,5 +36,17 @@ namespace Ewig.Data
 
             base.Update(entity);
         }
+
+        public List<Album> GetWithArtistName()
+        {
+            var names = 
+            DataRepository.Artist.Get().ToDictionary(x => x.ArtistId, x => x.Name);
+
+            List<Album> albums = Get();
+            foreach (var x in albums)
+                x.ArtistName = names[x.ArtistId];
+
+            return albums;
+        }
     }
 }

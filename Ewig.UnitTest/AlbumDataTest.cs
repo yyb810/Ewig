@@ -128,5 +128,12 @@ namespace Ewig.UnitTest
 
             Assert.AreEqual("The Best Of Billy Cobham", titles[0]);
         }
+
+        [TestMethod()]
+        public void GetWithArtistName()
+        {
+            List<Album> albums = DataRepository.Album.GetWithArtistName();
+            Assert.AreEqual("AC/DC", albums[0].ArtistName);
+        }
     }
 }
