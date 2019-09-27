@@ -12,18 +12,14 @@ namespace Ewig.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Artist
+    public partial class Vote
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Artist()
-        {
-            this.Albums = new HashSet<Album>();
-        }
+        public System.DateTime Date { get; set; }
+        public string PlayerId { get; set; }
+        public int RestaurantId { get; set; }
     
-        public int ArtistId { get; set; }
-        public string Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Album> Albums { get; set; }
+        public virtual Player Player { get; set; }
+        public virtual Supper Supper { get; set; }
+        public virtual Restaurant Restaurant { get; set; }
     }
 }

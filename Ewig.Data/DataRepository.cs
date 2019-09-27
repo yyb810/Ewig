@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ewig.Data
+﻿namespace Ewig.Data
 {
     public class DataRepository
     {
-        public static AlbumData Album {get;} = new AlbumData();
-        public static ArtistData Artist {get;} = new ArtistData();
-        public static TrackData Track {get;} = new TrackData();
+        public static VoteData Vote {get;} = new VoteData();
+        public static RestaurantData Restaurant {get;} = new RestaurantData();
+        public static PlayerData Player {get;} = new PlayerData();
+        public static SupperData Supper {get;} = new SupperData();
     }
 }

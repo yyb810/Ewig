@@ -53,25 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Album.cs">
-      <DependentUpon>Ewig.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\AlbumData.cs" />
-    <Compile Include="Artist.cs">
-      <DependentUpon>Ewig.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Customer.cs">
-      <DependentUpon>Ewig.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataRepository.cs" />
-    <Compile Include="Data\ArtistData.cs" />
     <Compile Include="Data\EntityData.cs" />
-    <Compile Include="Data\PlaylistTrackData.cs" />
-    <Compile Include="Data\TrackData.cs" />
-    <Compile Include="Employee.cs">
-      <DependentUpon>Ewig.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Album.cs" />
+    <Compile Include="Data\RestaurantData.cs" />
+    <Compile Include="Data\VoteData.cs" />
+    <Compile Include="Data\SupperData.cs" />
+    <Compile Include="Data\PlayerData.cs" />
     <Compile Include="Ewig.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -87,41 +74,33 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Ewig.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Genre.cs">
-      <DependentUpon>Ewig.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Invoice.cs">
-      <DependentUpon>Ewig.tt</DependentUpon>
-    </Compile>
-    <Compile Include="InvoiceLine.cs">
-      <DependentUpon>Ewig.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MediaType.cs">
-      <DependentUpon>Ewig.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Playlist.cs">
-      <DependentUpon>Ewig.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PlaylistTrack.cs">
+    <Compile Include="Player.cs">
       <DependentUpon>Ewig.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Track.cs">
+    <Compile Include="Restaurant.cs">
+      <DependentUpon>Ewig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Supper.cs">
+      <DependentUpon>Ewig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vote.cs">
       <DependentUpon>Ewig.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Ewig.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Ewig.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Ewig.edmx.diagram">
       <DependentUpon>Ewig.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ewig.Context.tt">
@@ -136,7 +115,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -4,29 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c9372c8ef0c24deba27a4f67dd1908cf" Name="Diagram1">
-        <EntityTypeShape EntityType="ChinookModel.Album" Width="1.5" PointX="3" PointY="4" />
-        <EntityTypeShape EntityType="ChinookModel.Artist" Width="1.5" PointX="0.75" PointY="4.125" />
-        <EntityTypeShape EntityType="ChinookModel.Customer" Width="1.5" PointX="3" PointY="10.125" />
-        <EntityTypeShape EntityType="ChinookModel.Employee" Width="1.5" PointX="0.75" PointY="9.875" />
-        <EntityTypeShape EntityType="ChinookModel.Genre" Width="1.5" PointX="3" PointY="7.25" />
-        <EntityTypeShape EntityType="ChinookModel.Invoice" Width="1.5" PointX="5.25" PointY="10.5" />
-        <EntityTypeShape EntityType="ChinookModel.InvoiceLine" Width="1.5" PointX="7.5" PointY="0.75" />
-        <EntityTypeShape EntityType="ChinookModel.MediaType" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="ChinookModel.Playlist" Width="1.5" PointX="5.25" PointY="8.125" />
-        <EntityTypeShape EntityType="ChinookModel.PlaylistTrack" Width="1.5" PointX="7.5" PointY="4" />
-        <EntityTypeShape EntityType="ChinookModel.Track" Width="1.5" PointX="5.25" PointY="3.125" />
-        <AssociationConnector Association="ChinookModel.FK_AlbumArtistId" />
-        <AssociationConnector Association="ChinookModel.FK_TrackAlbumId" />
-        <AssociationConnector Association="ChinookModel.FK_CustomerSupportRepId" />
-        <AssociationConnector Association="ChinookModel.FK_InvoiceCustomerId" />
-        <AssociationConnector Association="ChinookModel.FK_EmployeeReportsTo" />
-        <AssociationConnector Association="ChinookModel.FK_TrackGenreId" />
-        <AssociationConnector Association="ChinookModel.FK_InvoiceLineInvoiceId" />
-        <AssociationConnector Association="ChinookModel.FK_InvoiceLineTrackId" />
-        <AssociationConnector Association="ChinookModel.FK_TrackMediaTypeId" />
-        <AssociationConnector Association="ChinookModel.FK_PlaylistTrackPlaylistId" />
-        <AssociationConnector Association="ChinookModel.FK_PlaylistTrackTrackId" />
+      <Diagram DiagramId="095dd049b5c241aa88ffd761d9001ae0" Name="Diagram1">
+        <EntityTypeShape EntityType="EwigModel.Supper" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EwigModel.Player" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="EwigModel.Vote" Width="1.5" PointX="5.25" PointY="3.5" />
+        <AssociationConnector Association="EwigModel.FK_Choice_Player" />
+        <AssociationConnector Association="EwigModel.FK_Choice_Round1" />
+        <EntityTypeShape EntityType="EwigModel.Restaurant" Width="1.5" PointX="0.75" PointY="3.75" />
+        <AssociationConnector Association="EwigModel.FK_Choice_Restaurant" />
+        <AssociationConnector Association="EwigModel.FK_Round_Restaurant" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

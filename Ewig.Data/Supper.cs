@@ -12,18 +12,20 @@ namespace Ewig.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Genre
+    public partial class Supper
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Genre()
+        public Supper()
         {
-            this.Tracks = new HashSet<Track>();
+            this.Votes = new HashSet<Vote>();
         }
     
-        public int GenreId { get; set; }
-        public string Name { get; set; }
+        public System.DateTime Date { get; set; }
+        public Nullable<int> RestaurantId { get; set; }
+        public int PlayerCount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Track> Tracks { get; set; }
+        public virtual ICollection<Vote> Votes { get; set; }
+        public virtual Restaurant Restaurant { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Ewig.Data
     {
         protected T GetByPKCore(Expression<Func<T, bool>> predicate)
         {
-            using (ChinookEntities context = new ChinookEntities())
+            using (EwigEntities context = new EwigEntities())
             {
                 return context.Set<T>().FirstOrDefault(predicate);
             }
@@ -23,9 +23,20 @@ namespace Ewig.Data
             if (predicate == null)
                 predicate = (x) => true;
 
-            using (ChinookEntities context = new ChinookEntities())
+            using (EwigEntities context = new EwigEntities())
             {
                 return context.Set<T>().Count(predicate);
+            }
+        }
+
+        public T GetFirst(Expression<Func<T, bool>> predicate = null)
+        {
+            if (predicate == null)
+                predicate = (x) => true;
+
+            using (EwigEntities context = new EwigEntities())
+            {
+                return context.Set<T>().FirstOrDefault(predicate);
             }
         }
 
@@ -46,7 +57,7 @@ namespace Ewig.Data
             int? take,
             int? skip)
         {
-            using (ChinookEntities context = new ChinookEntities())
+            using (EwigEntities context = new EwigEntities())
             {
                 IQueryable<T> query = context.Set<T>();
 
@@ -75,7 +86,7 @@ namespace Ewig.Data
             Expression<Func<T, R>> selector,
             Expression<Func<T, bool>> predicate = null)
         {
-            using (ChinookEntities context = new ChinookEntities())
+            using (EwigEntities context = new EwigEntities())
             {
                 IQueryable<T> query = context.Set<T>();
 
@@ -90,7 +101,7 @@ namespace Ewig.Data
 
         public virtual void Insert(T entity)
         {
-            using (ChinookEntities context = new ChinookEntities())
+            using (EwigEntities context = new EwigEntities())
             {
                 context.Set<T>().Add(entity);
 
@@ -100,7 +111,7 @@ namespace Ewig.Data
 
         public virtual void Update(T entity)
         {
-            using (ChinookEntities context = new ChinookEntities())
+            using (EwigEntities context = new EwigEntities())
             {
                 context.Entry(entity).State = EntityState.Modified;
 
@@ -110,7 +121,7 @@ namespace Ewig.Data
 
         public virtual void Delete(T entity)
         {
-            using (ChinookEntities context = new ChinookEntities())
+            using (EwigEntities context = new EwigEntities())
             {
                 context.Entry(entity).State = EntityState.Deleted;
 
