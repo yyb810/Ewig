@@ -69,7 +69,7 @@ namespace Ewig.UnitTest
 
             album = DataRepository.Album.GetByPK(2);
 
-            Assert.AreEqual(now, album.Title);
+            Assert.AreEqual("!!!", album.Title);
         }
 
         [TestMethod()]
