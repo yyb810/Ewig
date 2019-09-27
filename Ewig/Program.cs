@@ -75,7 +75,7 @@ namespace Ewig
 
             DataRepository.Vote.Insert(vote);
 
-            DataRepository.Supper.PickRestaurant();
+            DataRepository.Supper.PickRestaurant(DateTime.Today);
         }
 
         private static Player Login()
