@@ -23,13 +23,5 @@ namespace Ewig.Data
                 return votes.ToList();
             }
         }
-
-        public int GetCountByDate(DateTime date)
-        {
-            using (var context = new EwigEntities())
-            {
-                return context.Votes.Count(x => x.Date == date);
-            }
-        }
     }
 }

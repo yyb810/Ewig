@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,19 +10,42 @@ namespace Ewig.Data
 {
     public class EntityData<T> where T:class
     {
-        public int GetCount()
+        public int GetCount(Expression<Func<T, bool>> predicate = null)
         {
+            if (predicate == null)
+                predicate = x => true;
+
             using (EwigEntities context = new EwigEntities())
             {
-                return context.Set<T>().Count();
-            } // context.Dispose(); 자동 실행
+                return context.Set<T>().Count(predicate);
+            }
         }
 
-        public List<T> GetAll()
+        public List<T> GetAll(Expression<Func<T, bool>> predicate = null)
         {
+            if (predicate == null)
+                predicate = x => true;
+
             using (EwigEntities context = new EwigEntities())
             {
-                return context.Set<T>().ToList();
+                return context.Set<T>()
+                            .Where(predicate)        
+                            .ToList();
+            }
+        }
+
+        public List<R> Select<R>(Expression<Func<T, R>> selector, Expression<Func<T, bool>> predicate = null)
+        {
+            if (predicate == null)
+                predicate = x => true;
+
+            using (EwigEntities context = new EwigEntities())
+            {
+                return context
+                            .Set<T>()
+                            .Where(predicate)
+                            .Select(selector)
+                            .ToList();
             }
         }
 

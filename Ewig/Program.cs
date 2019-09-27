@@ -13,6 +13,8 @@ namespace Ewig
     {
         static void Main(string[] args)
         {
+            Login();
+
             SelectRestaurant();
             
             while (true)
@@ -27,6 +29,11 @@ namespace Ewig
             ShowVotes();
 
             ShowWinner();
+        }
+
+        private static void Login()
+        {
+            Console.WriteLine("전화번호 끝자리 4개를 입력하시오");
         }
 
         private static void ShowWinner()

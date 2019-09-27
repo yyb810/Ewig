@@ -26,7 +26,7 @@ namespace Ewig.Data
         {
             Supper supper = GetByPK(date);
 
-            int voteCount = DataRepository.Vote.GetCountByDate(date);
+            int voteCount = DataRepository.Vote.GetCount(x => x.Date == date);
 
             return supper.PlayerCount == voteCount;
         }
