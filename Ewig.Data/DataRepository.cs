@@ -8,19 +8,7 @@ namespace Ewig.Data
 {
     public class DataRepository
     {
-        static DataRepository()
-        {
-            _album = new AlbumData();
-        }
-
-        private static AlbumData _album;
-
-        public static AlbumData Album
-        {
-            get
-            {
-                return _album;
-            }
-        }
+        public static AlbumData Album {get;} = new AlbumData();
+        public static ArtistData Artist {get;} = new ArtistData();
     }
 }

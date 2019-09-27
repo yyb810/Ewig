@@ -24,8 +24,8 @@ namespace Ewig.Data
         public string Title { get; set; }
         public int ArtistId { get; set; }
     
-        public virtual Artist Artist { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Track> Tracks { get; set; }
+        public virtual Artist Artist { get; set; }
     }
 }

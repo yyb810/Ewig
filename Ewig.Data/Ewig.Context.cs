@@ -26,7 +26,6 @@ namespace Ewig.Data
         }
     
         public virtual DbSet<Album> Albums { get; set; }
-        public virtual DbSet<Artist> Artists { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Genre> Genres { get; set; }
@@ -35,5 +34,6 @@ namespace Ewig.Data
         public virtual DbSet<MediaType> MediaTypes { get; set; }
         public virtual DbSet<Playlist> Playlists { get; set; }
         public virtual DbSet<Track> Tracks { get; set; }
+        public virtual DbSet<Artist> Artists { get; set; }
     }
 }
