@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ewig.Data
 {
-    public class EntityData<T> where T:class
+    public class EntityData<T> where T : class
     {
         protected T GetByPKCore(Expression<Func<T, bool>> predicate)
         {
@@ -29,21 +29,50 @@ namespace Ewig.Data
             }
         }
 
-        public List<T> Get(Expression<Func<T, bool>> predicate = null)
+        public List<T> Get()
+        {
+            return GetCore<T>(null, null, false, null, null);
+        }
+
+        public List<T> Get(Expression<Func<T, bool>> predicate)
+        {
+            return GetCore<T>(predicate, null, false, null, null);
+        }
+
+        protected List<T> GetCore<O>(
+            Expression<Func<T, bool>> predicate,
+            Expression<Func<T, O>> orderBy,
+            bool ascending,
+            int? take,
+            int? skip)
         {
             using (ChinookEntities context = new ChinookEntities())
             {
                 IQueryable<T> query = context.Set<T>();
-                
+
                 if (predicate != null)
                     query = query.Where(predicate);
+
+                if (orderBy != null)
+                {
+                    if (ascending)
+                        query = query.OrderBy(orderBy);
+                    else
+                        query = query.OrderByDescending(orderBy);
+                }
+
+                if (skip != null)
+                    query = query.Skip(skip.Value);
+
+                if (take != null)
+                query = query.Take(take.Value);
 
                 return query.ToList();
             }
         }
 
         public List<R> Select<R>(
-            Expression<Func<T, R>> selector ,
+            Expression<Func<T, R>> selector,
             Expression<Func<T, bool>> predicate = null)
         {
             using (ChinookEntities context = new ChinookEntities())
@@ -59,7 +88,7 @@ namespace Ewig.Data
             }
         }
 
-        public void Insert(T entity)
+        public virtual void Insert(T entity)
         {
             using (ChinookEntities context = new ChinookEntities())
             {
@@ -69,7 +98,7 @@ namespace Ewig.Data
             }
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             using (ChinookEntities context = new ChinookEntities())
             {
@@ -79,7 +108,7 @@ namespace Ewig.Data
             }
         }
 
-        public void Delete(T entity)
+        public virtual void Delete(T entity)
         {
             using (ChinookEntities context = new ChinookEntities())
             {

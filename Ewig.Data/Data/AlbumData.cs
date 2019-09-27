@@ -29,5 +29,12 @@ namespace Ewig.Data
             return query.First();
             }
         }
+
+        public override void Update(Album entity)
+        {
+            entity.Title = "!!!";
+
+            base.Update(entity);
+        }
     }
 }
