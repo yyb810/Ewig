@@ -12,24 +12,12 @@ namespace Ewig
     {
         static void Main(string[] args)
         {
-            List<Album> albums = DataRepository.Album.GetAll();
+            List<Track> list = DataRepository.Track.Get(x => x.AlbumId == 100);
 
-            Album album = DataRepository.Album.GetByPK(4);
-
-            album.Title = DateTime.Now.ToString();
-            DataRepository.Album.Update(album);
-
-            int count = DataRepository.Album.GetCount();
-
-            Album newAlbum = new Album();
-            newAlbum.Title = DateTime.Now.ToString();
-            DataRepository.Album.Insert(newAlbum);
-
-            count = DataRepository.Album.GetCount();
-
-            DataRepository.Album.Delete(newAlbum);
-
-            count = DataRepository.Album.GetCount();
+            foreach (var track in list)
+            {
+                Console.WriteLine($"{track.TrackId} / {track.AlbumId}");
+            }
         }
     }
 }

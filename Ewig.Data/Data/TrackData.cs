@@ -10,10 +10,7 @@ namespace Ewig.Data
     {
         public Track GetByPK(int trackId)
         {
-            using (ChinookEntities context = new ChinookEntities())
-            {
-                return context.Tracks.FirstOrDefault(x => x.TrackId == trackId);
-            }
+            return GetByPKCore(x => x.TrackId == trackId);
         }
     }
 }

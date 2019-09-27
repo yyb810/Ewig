@@ -10,6 +10,14 @@ namespace Ewig.Data
 {
     public class EntityData<T> where T:class
     {
+        protected T GetByPKCore(Expression<Func<T, bool>> predicate)
+        {
+            using (ChinookEntities context = new ChinookEntities())
+            {
+                return context.Set<T>().FirstOrDefault(predicate);
+            }
+        }
+
         public int GetCount(Expression<Func<T, bool>> predicate = null)
         {
             if (predicate == null)
@@ -21,11 +29,33 @@ namespace Ewig.Data
             }
         }
 
-        public List<T> GetAll()
+        public List<T> Get(Expression<Func<T, bool>> predicate = null)
         {
             using (ChinookEntities context = new ChinookEntities())
             {
-                return context.Set<T>().ToList();
+                IQueryable<T> query = context.Set<T>();
+                
+                if (predicate != null)
+                    query = query.Where(predicate);
+
+                return query.ToList();
+            }
+        }
+
+        public List<R> Select<R>(
+            Expression<Func<T, R>> selector ,
+            Expression<Func<T, bool>> predicate = null)
+        {
+            using (ChinookEntities context = new ChinookEntities())
+            {
+                IQueryable<T> query = context.Set<T>();
+
+                if (predicate != null)
+                    query = query.Where(predicate);
+
+                IQueryable<R> query2 = query.Select(selector);
+
+                return query2.ToList();
             }
         }
 

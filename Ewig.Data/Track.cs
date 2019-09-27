@@ -18,7 +18,7 @@ namespace Ewig.Data
         public Track()
         {
             this.InvoiceLines = new HashSet<InvoiceLine>();
-            this.Playlists = new HashSet<Playlist>();
+            this.PlaylistTracks = new HashSet<PlaylistTrack>();
         }
     
         public int TrackId { get; set; }
@@ -37,6 +37,6 @@ namespace Ewig.Data
         public virtual ICollection<InvoiceLine> InvoiceLines { get; set; }
         public virtual MediaType MediaType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Playlist> Playlists { get; set; }
+        public virtual ICollection<PlaylistTrack> PlaylistTracks { get; set; }
     }
 }

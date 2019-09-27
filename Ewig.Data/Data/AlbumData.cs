@@ -1,21 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Ewig.Data
 {
     public class AlbumData : EntityData<Album>
     {
-        internal AlbumData()
-        {
-        }
-
         public Album GetByPK(int albumId)
         {
-            using (ChinookEntities context = new ChinookEntities())
-            {
-                return context.Albums.FirstOrDefault(x => x.AlbumId == albumId);
-            }
+            return GetByPKCore(x => x.AlbumId == albumId);
         }
 
         public int GetLastAlbumId()

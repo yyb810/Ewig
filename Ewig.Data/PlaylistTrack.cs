@@ -12,18 +12,13 @@ namespace Ewig.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Playlist
+    public partial class PlaylistTrack
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Playlist()
-        {
-            this.PlaylistTracks = new HashSet<PlaylistTrack>();
-        }
-    
         public int PlaylistId { get; set; }
-        public string Name { get; set; }
+        public int TrackId { get; set; }
+        public Nullable<bool> Dummy { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PlaylistTrack> PlaylistTracks { get; set; }
+        public virtual Playlist Playlist { get; set; }
+        public virtual Track Track { get; set; }
     }
 }

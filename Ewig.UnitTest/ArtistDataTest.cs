@@ -28,7 +28,7 @@ namespace Ewig.UnitTest
         [TestMethod()]
         public void Artist_GetAllPKTest()
         {
-            List<Artist> artists = DataRepository.Artist.GetAll();
+            List<Artist> artists = DataRepository.Artist.Get();
 
             Assert.IsTrue(artists.Count > 0);
             
@@ -64,6 +64,15 @@ namespace Ewig.UnitTest
             artist = DataRepository.Artist.GetByPK(2);
 
             Assert.AreEqual(now, artist.Name);
+        }
+
+        [TestMethod()]
+        public void SelectWithPredicateTest()
+        {
+            List<int> ids = DataRepository.Artist.Select(x => x.ArtistId, x => x.ArtistId < 10);
+
+            Assert.AreEqual(10, ids.Count);
+            Assert.AreEqual(9, ids[ids.Count - 1]);
         }
     }
 }

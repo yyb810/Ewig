@@ -33,7 +33,7 @@ namespace Ewig.UnitTest
         [TestMethod()]
         public void Album_GetAllPKTest()
         {
-            List<Album> albums = DataRepository.Album.GetAll();
+            List<Album> albums = DataRepository.Album.Get();
 
             Assert.IsTrue(albums.Count > 0);
             
@@ -106,6 +106,27 @@ namespace Ewig.UnitTest
             int count = DataRepository.Album.GetCount(x => x.Title.Contains("the"));
 
             Assert.AreEqual(78, count);
+        }
+
+        [TestMethod()]
+        public void GetWithPredicateTest()
+        {
+            List<Album> albums = DataRepository.Album.Get(x => x.Title.Contains("the"));
+
+            Assert.AreEqual(13, albums[0].AlbumId);
+            Assert.AreEqual("The Best Of Billy Cobham", albums[0].Title);
+        }
+
+        [TestMethod()]
+        public void SelectWithPredicateTest()
+        {
+            List<Album> albums = DataRepository.Album.Select(x => x, x => x.Title.Contains("the"));
+
+            List<int> ids = DataRepository.Album.Select(x => x.AlbumId, x => x.Title.Contains("the"));
+
+            List<string> titles = DataRepository.Album.Select(x => x.Title, x => x.Title.Contains("the"));
+
+            Assert.AreEqual("The Best Of Billy Cobham", titles[0]);
         }
     }
 }
