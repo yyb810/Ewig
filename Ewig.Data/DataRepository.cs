@@ -10,5 +10,6 @@ namespace Ewig.Data
     {
         public static AlbumData Album {get;} = new AlbumData();
         public static ArtistData Artist {get;} = new ArtistData();
+        public static TrackData Track {get;} = new TrackData();
     }
 }

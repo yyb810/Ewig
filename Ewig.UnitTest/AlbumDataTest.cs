@@ -99,5 +99,13 @@ namespace Ewig.UnitTest
 
             Assert.IsTrue(oldMaxAlbumId < newMaxAlbumId);
         }
+
+        [TestMethod()]
+        public void GetCountWithPredicateTest()
+        {
+            int count = DataRepository.Album.GetCount(x => x.Title.Contains("the"));
+
+            Assert.AreEqual(78, count);
+        }
     }
 }

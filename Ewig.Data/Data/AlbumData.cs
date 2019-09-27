@@ -4,18 +4,10 @@ using System.Linq;
 
 namespace Ewig.Data
 {
-    public class AlbumData
+    public class AlbumData : EntityData<Album>
     {
         internal AlbumData()
         {
-        }
-
-        public int GetCount()
-        {
-            using (ChinookEntities context = new ChinookEntities())
-            {
-                return context.Albums.Count();
-            } // context.Dispose(); 자동 실행
         }
 
         public Album GetByPK(int albumId)
@@ -23,14 +15,6 @@ namespace Ewig.Data
             using (ChinookEntities context = new ChinookEntities())
             {
                 return context.Albums.FirstOrDefault(x => x.AlbumId == albumId);
-            }
-        }
-
-        public List<Album> GetAll()
-        {
-            using (ChinookEntities context = new ChinookEntities())
-            {
-                return context.Albums.ToList();
             }
         }
 
@@ -48,36 +32,6 @@ namespace Ewig.Data
                         select x.AlbumId;
 
             return query.First();
-            }
-        }
-
-        public void Insert(Album album)
-        {
-            using (ChinookEntities context = new ChinookEntities())
-            {
-                context.Albums.Add(album);
-
-                context.SaveChanges();
-            }
-        }
-
-        public void Update(Album album)
-        {
-            using (ChinookEntities context = new ChinookEntities())
-            {
-                context.Entry(album).State = EntityState.Modified;
-
-                context.SaveChanges();
-            }
-        }
-
-        public void Delete(Album album)
-        {
-            using (ChinookEntities context = new ChinookEntities())
-            {
-                context.Entry(album).State = EntityState.Deleted;
-
-                context.SaveChanges();
             }
         }
     }
